@@ -11,7 +11,7 @@ startTimer();
 
 function startTimer() {
   document.getElementById('lateTimer').innerHTML= "" ;
-var t = Date.parse("2017-10-2  10:15") - Date.parse(new Date());
+var t = Date.parse("2017-10-2  10:27") - Date.parse(new Date());
 if(t<0){
  document.getElementById('timer').innerHTML="";
       document.getElementById('lateTimer').innerHTML="";
