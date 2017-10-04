@@ -1,5 +1,8 @@
+var endTime="";
 window.onload = function() {
+var animate=document.getElementById('enTime').style.animationPlayState="paused";
 var heartbeat= document.getElementById('heartbeat');
+
 
 document.getElementById('timer').innerHTML =
 01 + ":" + 05;
@@ -10,8 +13,14 @@ startTimer();
 }
 
 function startTimer() {
-  document.getElementById('lateTimer').innerHTML= "" ;
-var t = Date.parse("2017-10-2  10:27") - Date.parse(new Date());
+    
+    var database = firebase.database(); 
+    database.ref('date').once('value').then(function(snapshot) {
+     value = snapshot.val();
+     endTime=value.endDate;
+    })
+  
+var t = Date.parse(endTime) - Date.parse(new Date);
 if(t<0){
  document.getElementById('timer').innerHTML="";
       document.getElementById('lateTimer').innerHTML="";
@@ -27,7 +36,7 @@ else{
         var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
         var days = Math.floor(t / (1000 * 60 * 60 * 24) % 30);
         var months = Math.floor(t / (1000 * 60 * 60 * 24 * 30));
-        var hundredths = (t -(seconds *1000)- (minutes*60000));       
+        var hundredths = (t -(seconds *1000)- (minutes*60000));
         if (months < 10) {
           months = "0" + months;
       }
@@ -41,11 +50,11 @@ else{
           minutes = "0" + minutes;
       }
       if (seconds < 10) {
-       
+
           seconds = "0" + seconds;
       }
       if (lateSeconds < 10) {
-        
+
            lateSeconds = "0" + lateSeconds;
        }
 
@@ -54,9 +63,9 @@ else{
       }
 
      if(minutes==0){
-      
+
          if(seconds == 29 || seconds<10){
-        
+        document.getElementById('enTime').style.animationPlayState="running";
         document.getElementById('timer').innerHTML =
         months+ " : " +days+ " : " +hours+" : "+minutes+" : "
         +seconds;
@@ -67,14 +76,16 @@ else{
         heartbeat.play();
       }
       else{
+        document.getElementById('enTime').style.animationPlayState="running";
         document.getElementById('timer').innerHTML =
         months+ " : " +days+ " : " +hours+" : "+minutes+" : "
         +seconds;
         document.getElementById('lateTimer').innerHTML =
-            "";
+        "";
       }
     }
     else{
+       
       document.getElementById('timer').innerHTML =
       months+ " : " +days+ " : " +hours+" : "+minutes+" : "
       +seconds;
@@ -82,7 +93,6 @@ else{
           "";
     }
   }
-  
+
 setTimeout(startTimer, 1000);
 }
-

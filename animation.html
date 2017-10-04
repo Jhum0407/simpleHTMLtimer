@@ -40,7 +40,7 @@ img{
 
     
 }
-.enTime{
+#enTime{
     color:red;
     text-align: center;
     font-family: ForzaMid;
@@ -52,8 +52,8 @@ img{
     z-index:100; 
     -webkit-animation: mymove 1s infinite;
     animation: mymove 1s infinite;
-    animation-delay: 0.05s;
-    -webkit-animation-delay: 0.05s;
+    animation-delay: 1.085s;
+    -webkit-animation-delay: 1.085s;
 }
 @-webkit-keyframes mymove {
     from {opacity:1}
@@ -146,10 +146,26 @@ img{
             </div>    
         </span>
        </div>
-       <div class='enTime'><span id='lateTimer'></span></div>
+       <div id='enTime'><span id='lateTimer'></span></div>
        <audio id="heartbeat" src="assets/Short321.wav"></audio>
 
   
+       <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase-database.js"></script>
+ <script>
+   // Initialize Firebase
+   var config = {
+     apiKey: "AIzaSyC0Bf41-ddMgzXz-GYa445j5elTP7NPCRA",
+     authDomain: "openbracket-699df.firebaseapp.com",
+     databaseURL: "https://openbracket-699df.firebaseio.com",
+     projectId: "openbracket-699df",
+     storageBucket: "openbracket-699df.appspot.com",
+     messagingSenderId: "10129174502"
+   };
+   firebase.initializeApp(config);
+ </script>   
     <script  src="js/index.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
